@@ -11,71 +11,77 @@ import Renew from "@assets/files.png";
 
 export const APP_UTINITIES: Array<Utinity> = [
     {
-        key: "create-schedule-appointment",
-        label: "Đặt lịch làm việc",
+        key: "curriculum",
+        label: "ENGLISH Learners",
+        icon: Icon.BookIcon,
+        path: "/curriculum",
+    },
+    {
+        key: "lessons",
+        label: "Bài học",
+        icon: Icon.BookIcon,
+        path: "/lessons",
+    },
+    {
+        key: "vocabulary",
+        label: "Từ vựng",
+        icon: Icon.SearchIcon,
+        path: "/vocabulary",
+    },
+    {
+        key: "exercises",
+        label: "Bài tập",
+        icon: Icon.PenIcon,
+        path: "/exercises",
+    },
+    {
+        key: "progress",
+        label: "Tiến độ",
         icon: Icon.CalendarIcon,
-        path: "/create-schedule-appointment",
+        path: "/progress",
     },
     {
         key: "info",
-        label: "Thông tin - hướng dẫn",
+        label: "Hướng dẫn",
         icon: Icon.BookIcon,
         path: "/information-guide",
-    },
-    {
-        key: "feedback",
-        label: "Góp ý - phản ánh",
-        icon: Icon.PenIcon,
-        path: "/feedbacks",
-    },
-    {
-        key: "goverment",
-        label: "Cổng dịch vụ công quốc gia",
-        icon: Icon.GlobeIcon,
-        link: "https://dichvucong.gov.vn/",
-    },
-    {
-        key: "file-search",
-        label: "Tra cứu hồ sơ",
-        icon: Icon.SearchIcon,
-        path: "/search",
     },
 ];
 
 export const CONTACTS: Array<Utinity> = [
     {
-        key: "social-insurance",
-        label: "BHXH TP Thủ Đức",
+        key: "recent-lesson-1",
+        label: "Bài học: Greetings",
         link: "",
         iconSrc: SocialInsuranceLogo,
     },
     {
-        key: "si-number",
-        label: "Số tài khoản Thu BHXH",
+        key: "recent-lesson-2",
+        label: "Bài học: Colors",
         link: "",
         iconSrc: SocialInsurranceNumber,
     },
     {
-        key: "internal-number",
-        label: "Số nội bộ tổ nghiệp vụ",
+        key: "recent-lesson-3",
+        label: "Bài học: Numbers",
         link: "",
         iconSrc: InternalPhone,
     },
     {
-        key: "department",
-        label: "Điểm thu BHXH, BHYT",
+        key: "recent-lesson-4",
+        label: "Bài học: Family",
         link: "",
         iconSrc: Location,
     },
     {
-        key: "update-identification",
-        label: "Cập nhật Mã định danh / CCCD",
+        key: "vocabulary-practice",
+        label: "Luyện tập từ vựng",
         link: "",
         iconSrc: Identification,
     },
     {
-        key: "youtube",
-        label: "Youtube",
+        key: "youtube-lessons",
+        label: "Video bài học",
         link: "",
         iconSrc: Youtube,
     },
@@ -83,14 +89,14 @@ export const CONTACTS: Array<Utinity> = [
 
 export const PROCEDURES: Array<Utinity> = [
     {
-        key: "renew",
-        label: "Gia hạn thẻ BHYT trực tuyến",
+        key: "badge-1",
+        label: "Badge: First Lesson",
         link: "",
         iconSrc: Renew,
     },
     {
-        key: "benefit",
-        label: "Các chế độ BHXH",
+        key: "badge-2",
+        label: "Badge: Vocabulary Master",
         link: "",
         iconSrc: Benefit,
     },

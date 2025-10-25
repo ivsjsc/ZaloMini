@@ -1,11 +1,11 @@
 {
     "app": {
-        "title": "DỊCH VỤ CÔNG",
-        "headerColor": "",
+        "title": "ENGLISH Learners",
+        "headerColor": "#1976D2",
         "textColor": "white",
-        "statusBarColor": "#046DD6",
-        "leftButton": "back",
-        "actionBarHidden": true,
+        "statusBarColor": "#1976D2",
+        "leftButton": "none",
+        "actionBarHidden": false,
         "hideIOSSafeAreaBottom": true,
         "statusBar": "transparent"
     },
@@ -15,6 +15,6 @@
     "listAsyncJS": [],
     "pages": [],
     "template": {
-        "name": "zaui-egovernment"
+        "name": "english-learners"
     }
 }

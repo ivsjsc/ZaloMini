@@ -1,14 +1,14 @@
 {
     "cwd": "/",
     "newProject": true,
-    "name": "Dịch Vụ Công",
+    "name": "English Learners",
     "package": "zmp-ui",
     "framework": "react-typescript",
     "cssPreProcessor": "scss",
     "template": "blank",
     "includeTailwind": true,
     "theming": {
-        "color": "#007aff",
+        "color": "#1976D2",
         "darkTheme": false,
         "fillBars": false
     },

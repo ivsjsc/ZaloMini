@@ -134,3 +134,5 @@ export type Utinity = {
     inDevelopment?: boolean;
     phoneNumber?: string;
 };
+
+export * from './curriculum';

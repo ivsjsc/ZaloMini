@@ -1,0 +1,21 @@
+{
+  "name": "ENGLISH Learners",
+  "short_name": "ENGLISHLearners",
+  "description": "Ứng dụng học tiếng Anh K-12 cho học sinh Việt Nam, curriculum đa cấp học, bài học tương tác, video, audio, và theo dõi tiến độ.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1976D2",
+  "theme_color": "#1976D2",
+  "icons": [
+    {
+      "src": "assets-src/web-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets-src/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -150,56 +150,48 @@ const CreateFeedbackForm: React.FC<CreateFeedbackFormProps> = ({
     };
 
     return (
-        <Conainer p={4} m={0}>
+        <Conainer p={4} m={0} className="space-y-4">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Box>
-                    <Input
-                        placeholder="Nhập nội dung"
-                        label="Tiêu đề*"
-                        errorText={getErrorMessage("title")}
-                        {...register("title", { required: true })}
-                        status={errors?.title ? "error" : "default"}
-                    />
-                </Box>
-                <Box mt={4}>
-                    <TextArea
-                        placeholder="Nhập nội dung"
-                        label="Nội dụng phản ánh*"
-                        errorText={getErrorMessage("content")}
-                        {...register("content", { required: true })}
-                        status={errors?.content ? "error" : "default"}
-                    />
-                </Box>
+                <Input
+                    placeholder="Nhập tiêu đề"
+                    label="Tiêu đề*"
+                    errorText={getErrorMessage("title")}
+                    {...register("title", { required: true })}
+                    status={errors?.title ? "error" : "default"}
+                />
+                <TextArea
+                    placeholder="Nhập nội dung chi tiết"
+                    label="Nội dụng phản ánh*"
+                    errorText={getErrorMessage("content")}
+                    {...register("content", { required: true })}
+                    status={errors?.content ? "error" : "default"}
+                />
 
-                <Box my={4}>
-                    <Divider />
-                </Box>
+                <Divider />
 
-                <Box>
-                    <ImageUpload
-                        label="Ảnh đính kèm"
-                        maxItemSize={1024 * 1024}
-                        maxSelect={MAX_FEEDBACK_IMAGES}
-                        onImagesChange={handleImagesChange}
-                    />
-                </Box>
+                <ImageUpload
+                    label="Ảnh đính kèm"
+                    maxItemSize={1024 * 1024}
+                    maxSelect={MAX_FEEDBACK_IMAGES}
+                    onImagesChange={handleImagesChange}
+                />
 
-                <Box my={4}>
-                    <Divider />
-                </Box>
+                <Divider />
 
                 <SelectFeedbackType
                     value={type}
                     onChange={handleFeedbackTypeChange}
                 />
 
-                <SendButton
+                <Button
                     loading={loading}
                     htmlType="submit"
                     suffixIcon={<Icon icon="zi-chevron-right" />}
+                    fullWidth
+                    className="mt-6"
                 >
                     Gửi phản ánh
-                </SendButton>
+                </Button>
             </form>
         </Conainer>
     );

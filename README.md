@@ -1,173 +1,115 @@
-# E Government Template
+
+# ENGLISH Learners - Zalo Mini App
 
 ## Table of Contents
 
--   [Overview](#overview)
--   [Project Structure](#project-structure)
--   [State Management](#state-management)
--   [Installation](#installation)
--   [Configuration](#configuration)
--   [Scripts](#scripts)
--   [License](#license)
+- [Overview](#overview)
+- [Curriculum Features](#curriculum-features)
+- [Project Structure](#project-structure)
+- [State Management](#state-management)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Scripts](#scripts)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Overview
 
-Template for E Government Zalo Mini App
-
-### Screen shot
-
-|                                                                        |                                                                        |                                                                        |
-| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img width="1604" alt="screen shot" src="./readme-assets/screen1.png"> | <img width="1604" alt="screen shot" src="./readme-assets/screen2.png"> | <img width="1604" alt="screen shot" src="./readme-assets/screen3.png"> |
-| <img width="1604" alt="screen shot" src="./readme-assets/screen4.png"> | <img width="1604" alt="screen shot" src="./readme-assets/screen5.png"> | <img width="1604" alt="screen shot" src="./readme-assets/screen6.png"> |
+ENGLISH Learners là ứng dụng học tiếng Anh dành cho học sinh Việt Nam, xây dựng trên nền tảng Zalo Mini App. Ứng dụng cung cấp curriculum đa cấp học, bài học tương tác, video, audio, và hệ thống theo dõi tiến độ học tập. Giao diện tuân thủ đầy đủ các guideline của Zalo Mini App, tối ưu cho mobile và desktop.
 
 ### Demo
 
-Scan this QR by Zalo to preview Sample Mini App
+Scan QR này bằng Zalo để xem thử ENGLISH Learners Mini App
 
 ![QR!](/readme-assets/qr.png)
 
-## Project Structure
 
-The project follows a specific structure to organize its codebase. Here's an overview of the key directories and their contents:
+## Curriculum Features
+
+- Curriculum đa cấp học: kindergarten, primary, secondary, high school
+- Mỗi lesson có: title, description, aims, vocabulary, grammar, activities, video, exercises
+- Tích hợp audio phát âm, video minh họa, bài tập trắc nghiệm
+- Theo dõi tiến độ học tập, cấp badge khi hoàn thành
+- Đa ngôn ngữ: English/Vietnamese
+
+## Project Structure
 
 ```shell
 .
 ├── src
 │   ├── components
-│   │   ├── UIComponent1
-│   │   │   ├── index.ts
-│   │   │   └── UIComponent1.tsx
-│   │   ├── UIComponent2
-│   │   │   ├── index.ts
-│   │   │   └── UIComponent2.tsx
-│   │   └── ...
-│   ├── services
-│   │   ├── services.ts
-│   │   ├── services.mock.ts
-│   │   └── zalo.ts
-│   ├── mock
-│   │   ├── db.json
-│   ├── pages
-│   │   ├── [PageName]
-│   │   │   ├── index.ts
-│   │   │   └── [PageName].tsx
-│   │   ├── Page1
-│   │   │   ├── index.ts
-│   │   │   └── Page1.tsx
-│   │   ├── Page2
-│   │   │   ├── index.ts
-│   │   │   ├── Section1.tsx
-│   │   │   ├── Section2.tsx
-│   │   │   └── Page2.tsx
-│   │   └── ...
-│   ├── constants
-│   │   └── common.ts
-│   ├── utils
-│   ├── types
-│   ├── css
-│   │   ├── global.css
-│   │   ├── tailwind.css
-│   └── assets
-│       ├── image1.png
-│       ├── image2.png
-│       └── ...
-├── .env
-├── .env.production
-├── .env.development
-├── .gitignore
+│   │   ├── curriculum/         # Lesson, Unit, Exercise, Video, Audio components
+│   │   ├── layout/             # AppBar, BottomNav, PageLayout
+│   │   ├── common/             # Common UI elements
+│   ├── pages/                  # Home, LessonDetail, UnitDetail, Profile, etc.
+│   ├── service/                # API, Zalo SDK, curriculum data
+│   ├── store/                  # Zustand state slices
+│   ├── constants/              # API endpoints, curriculum constants
+│   ├── utils/                  # Utility functions
+│   ├── types/                  # TypeScript types
+│   ├── css/                    # Tailwind, global styles
+│   ├── assets/                 # Images, icons, videos
+│   ├── mock/                   # Fake data for UI testing
+├── app-config.json             # Zalo Mini App config
+├── manifest.json               # Zalo Mini App manifest
+├── .env, .env.production, .env.development
 ├── package.json
 └── README.md
 ```
 
--   **`src/components`**: Contains UI components and common components used throughout the project.
--   **`src/pages`**: Contains pages and page sections. Each page represents a specific route or view of the application.
--   **`src/pages/index`**: Contains route configurations for the pages. This is where you define the routing logic of the application.
--   **`src/constants`**: Defines constants used in the project, such as API endpoints and other configuration values.
--   **`env.production` and `env.development`**: Edit the API base URL in these environment files (`VITE_BASE_URL`) based on your deployment environment.
--   **`.env`**: Contains configuration variables for the application. Make sure to update the `APP_ID` in this file.
--   **`src/utils`**: Contains utility functions that can be used across the project.
--   **`src/types`**: Contains type declarations for better type safety and code documentation.
--   **`src/css`**: Contains global CSS styles and Tailwind CSS configurations.
--   **`src/assets`**: Contains static assets such as images, fonts, and other resources used in the project.
--   **`src/mock`**: fake data for testing UI
--   **`src/services`**:
-    -   **`services.ts`**: This file contains the implementation for service call APIs.
-    -   **`services.mock.ts`**: This file is used for mocking services during UI testing.
-    -   **`zalo.ts`**: This file contains the implementation for Zalo APIS call.
+- **src/components/curriculum**: Các component cho lesson, unit, exercise, video, audio
+- **src/pages**: Các trang chính của app
+- **src/service/zalo.ts**: Tích hợp Zalo SDK, lấy user info, authentication
+- **src/store**: Quản lý state bằng Zustand
+- **src/constants**: Định nghĩa API endpoint, curriculum constants
+- **src/assets**: Hình ảnh, icon, video
+
 
 ## State Management
 
-[Zustand](https://github.com/pmndrs/zustand) is used for state management in this project. The state is organized into different slices based on the feature it belongs to. The following slices are available:
+Sử dụng [Zustand](https://github.com/pmndrs/zustand) để quản lý state, chia thành các slice:
 
--   **`authSlice`**: Manages authentication-related state.
--   **`appSlice`**: Manages application-level state, including notifications and theme settings.
--   **`feedbackSlice`**: Handles feedback-related state for future features.
--   **`informationGuideSlice`**: Manages guideline-related state for a specific feature.
--   **`organizationSlice`**: Handles organization information-related state for a specific feature.
--   **`scheduleSlice`**: Manages appointment scheduling-related state for a specific feature.
+- **authSlice**: Đăng nhập, thông tin người dùng (qua Zalo SDK)
+- **appSlice**: Thông báo, theme, cài đặt chung
+- **curriculumSlice**: Dữ liệu curriculum, tiến độ học tập
+- **feedbackSlice**: Quản lý feedback
+- **profileSlice**: Thông tin cá nhân, badge
 
-The state management code can be found in the `/src/store` directory.
+Code quản lý state nằm ở `/src/store`.
+
 
 ## Installation
 
-To install the project dependencies, please follow the steps below:
-
-1. Make sure you have [Node.js](https://nodejs.org) installed on your machine.
-
-2. Open a terminal or command prompt and navigate to the project's root directory.
-
-3. Run the following command to install the project dependencies using **yarn**:
-
-    ```shell
-    yarn install
-    ```
-
-    If you prefer to use **npm**, run the following command instead:
-
+1. Cài đặt [Node.js](https://nodejs.org)
+2. Mở terminal và chuyển đến thư mục dự án
+3. Cài đặt dependencies:
     ```shell
     npm install
     ```
 
-    This will download and install all the necessary packages defined in the `package.json` file.
 
 ## Configuration
 
-To configure the project for your specific deployment environment and application settings, follow the instructions below:
+- Sửa API base URL trong các file `.env.production`, `.env.development` (`VITE_BASE_URL`)
+- Định nghĩa endpoint trong `src/constants/common.ts` cho curriculum, lesson, feedback, v.v.
+- Cập nhật `APP_ID` trong `.env` với Zalo Mini App ID
 
-### API Base URL
-
--   Edit the API base URL in the environment files located at `env.production` and `env.development`. Look for the variable `VITE_BASE_URL` and update it with the appropriate URL for your backend API.
-
-### API Endpoints
-
-The API endpoints are defined in the `src/constants/common.ts` file. Modify the values to match your desired endpoints. You can replace the values of the endpoints with the pattern name_endpoints. Here's an updated example:
-
-```ts
-export const API = {
-    GET_ORGANIZATION: "/get_organization_api",
-    SEARCH_PROFILES: "/search_profiles_api",
-    GET_ARTICLES: "/get_articles_api",
-    FEEDBACK: "/feedback_api",
-    FEEDBACK_TYPES: "/feedback_types_api",
-    INFORMATION_GUIDE: "/information_guide_api",
-    UPLOAD_IMAGE: "/upload_image_api",
-    CREATE_SCHEDULE: "/create_schedule_api",
-    GET_SCHEDULE: "/get_schedule_api",
-};
-```
-
-### Application ID
-
--   Update the `APP_ID` in the `.env` file with the desired Zalo Mini App ID.
 
 ## Scripts
 
-The following scripts are available to run in the project:
+- `npm run dev`: Chạy app ở chế độ phát triển
+- `npx zmp start`: Preview Zalo Mini App trên dev server (http://localhost:3000)
+- `npm run build`: Build app cho production
 
--   **`npm start`**: Starts the project.
--   **`npm deploy`**: Deploys the project.
+
+## Deployment
+
+1. Build app: `npm run build`
+2. Upload lên Zalo Developer Console
+3. Cấu hình app (name, description, icon, quyền truy cập)
+4. Test trên Zalo app, beta test với người dùng
+5. Submit for review và publish
 
 ## License
 
-This project owned by **Zalo Mini App team**
+ENGLISH Learners - Zalo Mini App © 2025

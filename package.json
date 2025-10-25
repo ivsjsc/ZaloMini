@@ -1,8 +1,8 @@
 {
-    "name": "e-goverment",
+    "name": "english-learners",
     "private": true,
     "version": "1.0.0",
-    "description": "Dịch Vụ Công",
+    "description": "ENGLISH Learners - Zalo Mini App",
     "repository": "",
     "license": "UNLICENSED",
     "browserslist": [
@@ -26,9 +26,12 @@
         "precommit": "lint-staged"
     },
     "lint-staged": {
-        "*.{js,ts,tsx,json,css,scss,html,md}": [
-            "eslint  ./src --ext .js,.ts,.jsx,.tsx",
-            "prettier  ./src --write"
+        "*.{js,ts,jsx,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,css,scss,html,md}": [
+            "prettier --write"
         ]
     },
     "husky": {

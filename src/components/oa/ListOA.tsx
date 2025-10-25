@@ -7,7 +7,7 @@ import { useStore } from "@store";
 import OAItem from "./OAItem";
 
 const ListWrapper = styled(Box)`
-    ${tw`bg-ui_bg`};
+    ${tw`bg-white rounded-lg shadow-sm border border-gray-200 mb-4`};
 `;
 
 const SubTitle = styled(Text)`
@@ -24,11 +24,19 @@ const ListOA: FC<any> = () => {
     const loading = useStore(state => state.gettingOrganization);
 
     return (
-        <ListWrapper mt={2} p={4}>
+        <ListWrapper mt={2} p={4} className="section-container">
             <Text.Title size="small">Danh bạ</Text.Title>
-            <SubTitle size="small">OA chính thức của cơ quan nhà nước</SubTitle>
+            <SubTitle size="small">IVS JSC</SubTitle>
 
             <ListOAStyled>
+                <Box p={3}>
+                    <Text size="small">OA IVS - Giáo dục & Công nghệ</Text>
+                    <Text size="small">Website IVS: ivsacademy.edu.vn</Text>
+                    <Text size="small">Ứng dụng khác:</Text>
+                    <Text size="small">- https://test.ivsacademy.edu.vn</Text>
+                    <Text size="small">- https://eng.ivsacademy.edu.vn</Text>
+                    <Text size="small">- https://kinderlink.ivsacademy.edu.vn</Text>
+                </Box>
                 {!loading &&
                     officialAccounts?.map(item => (
                         <OAItem key={item.oaId} officialAccount={item} />

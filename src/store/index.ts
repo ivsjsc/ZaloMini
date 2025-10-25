@@ -11,6 +11,7 @@ import createOrganizationSlide, {
 } from "./organizationSlice";
 import createScheduleSlide, { ScheduleSlice } from "./scheduleSlice";
 import createProfileSlice, { ProfileSlice } from "./profileSlice";
+import createCurriculumSlice, { CurriculumSlice } from "./curriculumSlice";
 
 type State = AppSlice &
     AuthSlice &
@@ -18,7 +19,8 @@ type State = AppSlice &
     InformationGuideSlice &
     OrganizationSlice &
     ScheduleSlice &
-    ProfileSlice;
+    ProfileSlice &
+    CurriculumSlice;
 
 export const useStore = create<State>()(
     devtools((...a) => ({
@@ -29,5 +31,6 @@ export const useStore = create<State>()(
         ...createOrganizationSlide(...a),
         ...createScheduleSlide(...a),
         ...createProfileSlice(...a),
+        ...createCurriculumSlice(...a),
     })),
 );

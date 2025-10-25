@@ -5,7 +5,7 @@ import { VerticalUtinities } from "@components";
 const data = PROCEDURES;
 
 const Procedures = () => (
-    <VerticalUtinities title="Thủ tục hồ sơ" utinities={data} />
+    <VerticalUtinities title="Thành tích" utinities={data} />
 );
 
 export default Procedures;

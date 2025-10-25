@@ -14,6 +14,7 @@ import { CreateScheduleAppointmentPage } from "./CreateScheduleAppointment";
 import { AppointmentScheduleResultPage } from "./AppointmentScheduleResult";
 import { SearchPage } from "./Search";
 import { ProfilePage } from "./Profile";
+import { ProgramsPage, CategoryDetailPage, UnitDetailPage, LessonDetailPage } from "./Curriculum";
 
 const Routes: React.FC = () => (
     <ZMPRouter>
@@ -38,6 +39,10 @@ const Routes: React.FC = () => (
             />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/curriculum" element={<ProgramsPage />} />
+            <Route path="/curriculum/:categoryKey" element={<CategoryDetailPage />} />
+            <Route path="/curriculum/:categoryKey/level/:levelId/unit/:unitId" element={<UnitDetailPage />} />
+            <Route path="/curriculum/:categoryKey/level/:levelId/unit/:unitId/lesson/:lessonId" element={<LessonDetailPage />} />
         </AnimationRoutes>
     </ZMPRouter>
 );

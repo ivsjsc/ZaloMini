@@ -11,7 +11,7 @@ interface VerticalListPorps {
 }
 
 const Wrapper = styled.div`
-    ${tw`bg-ui_bg mt-2`};
+    ${tw`bg-white rounded-lg shadow-sm border border-gray-200 mt-2 mb-4`};
     padding: 16px;
 `;
 
