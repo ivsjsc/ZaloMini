@@ -63,7 +63,7 @@ const UtinityItem: FunctionComponent<UtinityItemProps> = props => {
     };
 
     return (
-        <Wrapper onClick={handleClick}>
+        <Wrapper onClick={handleClick} role="button" tabIndex={0}>
             {Icon && (
                 <IconWrapper>
                     <CenterIcon>

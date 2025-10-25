@@ -32,25 +32,24 @@ const AppointmentScheduleResult = forwardRef<HTMLDivElement, any>(() => {
         setImage(imageData);
     };
 
-    useEffect(() => {
-        convertToCanvas(cardRef.current);
-    }, []);
-
     const handleDownloadCard = async () => {
-        if (!image) {
-            await convertToCanvas(cardRef.current);
+        let currentImage = image;
+        if (!currentImage) {
+            const canvas = await html2canvas(cardRef.current as HTMLElement);
+            currentImage = canvas.toDataURL();
+            setImage(currentImage);
         }
         try {
-            if (!image) {
-                throw new Error();
-            }
-            await saveImage(image);
+            await saveImage(currentImage);
             openSnackbar({ type: "success", text: "Lưu ảnh thành công" });
         } catch (err) {
             setError({ message: "Đã có lỗi xảy ra, vui lòng thử lại" });
         }
     };
 
+    useEffect(() => {
+        convertToCanvas(cardRef.current);
+    }, []);
     if (!schedule) {
         return null;
     }

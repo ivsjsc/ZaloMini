@@ -44,6 +44,7 @@ const UtinityItem: FunctionComponent<ItemProps> = props => {
 
     return (
         <StyledListItem
+            role="button"
             onClick={handleClick}
             prefix={<ImageIcon src={iconSrc} />}
             title={label}

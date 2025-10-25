@@ -7,13 +7,14 @@ import { useNavigate, useParams } from "react-router-dom";
 const CategoryDetail: React.FC = () => {
     const navigate = useNavigate();
     const { categoryKey } = useParams<{ categoryKey: string }>();
-    const { currentCategory, loading, error, loadCategory, setCurrentLevel } = useStore(state => ({
-        currentCategory: state.currentCategory,
-        loading: state.loading,
-        error: state.error,
-        loadCategory: state.loadCategory,
-        setCurrentLevel: state.setCurrentLevel,
-    }));
+    const { currentCategory, loading, error, loadCategory } = useStore(
+        state => ({
+            currentCategory: state.currentCategory,
+            loading: state.loading,
+            error: state.error,
+            loadCategory: state.loadCategory,
+        }),
+    );
 
     useEffect(() => {
         if (categoryKey && !currentCategory) {
@@ -21,11 +22,13 @@ const CategoryDetail: React.FC = () => {
         }
     }, [categoryKey, currentCategory, loadCategory]);
 
-    const handleLevelClick = (level: any) => {
-        setCurrentLevel(level);
-        if (level.units && level.units.length > 0) {
-            navigate(`/curriculum/${categoryKey}/level/${level.level}/unit/${level.units[0].id}`);
-        }
+    // clicking level only sets current level (not required here)
+
+    const handleUnitClick = (level: any, unit: any) => {
+        // navigate to unit detail
+        navigate(
+            `/curriculum/${categoryKey}/level/${level.level}/unit/${unit.id}`,
+        );
     };
 
     if (loading) {
@@ -65,11 +68,40 @@ const CategoryDetail: React.FC = () => {
                 <Text>{currentCategory.category.vi}</Text>
                 <Box mt={4}>
                     <List>
-                        {currentCategory.levels.map((level) => (
-                            <List.Item key={level.level} onClick={() => handleLevelClick(level)}>
+                        {currentCategory.levels.map(level => (
+                            <List.Item key={level.level}>
                                 <Box p={3}>
-                                    <Text.Title size="small">{level.title.en}</Text.Title>
+                                    <Text.Title size="small">
+                                        {level.title.en}
+                                    </Text.Title>
                                     <Text>{level.subtitle.en}</Text>
+                                    <Box mt={2}>
+                                        <List>
+                                            {level.units?.map(unit => (
+                                                <List.Item
+                                                    key={unit.id}
+                                                    onClick={() =>
+                                                        handleUnitClick(
+                                                            level,
+                                                            unit,
+                                                        )
+                                                    }
+                                                >
+                                                    <Box p={2}>
+                                                        <Text size="small">
+                                                            {unit.title.en}
+                                                        </Text>
+                                                        <Text
+                                                            size="small"
+                                                            className="text-text_2"
+                                                        >
+                                                            {unit.title.vi}
+                                                        </Text>
+                                                    </Box>
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </Box>
                                 </Box>
                             </List.Item>
                         ))}

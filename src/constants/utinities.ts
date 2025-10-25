@@ -5,7 +5,6 @@ import Youtube from "@assets/youtube.png";
 import Location from "@assets/location.png";
 import Identification from "@assets/id-card.png";
 import InternalPhone from "@assets/internal-phone.png";
-import SocialInsurranceNumber from "@assets/social-insurance-number.png";
 import Benefit from "@assets/benefits.png";
 import Renew from "@assets/files.png";
 
@@ -59,7 +58,7 @@ export const CONTACTS: Array<Utinity> = [
         key: "recent-lesson-2",
         label: "Bài học: Colors",
         link: "",
-        iconSrc: SocialInsurranceNumber,
+        iconSrc: InternalPhone,
     },
     {
         key: "recent-lesson-3",

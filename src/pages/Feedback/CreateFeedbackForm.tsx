@@ -30,10 +30,6 @@ const Conainer = styled(Box)`
     ${tw`bg-white`}
 `;
 
-const SendButton = styled(Button)`
-    ${tw`w-full mt-6`}
-`;
-
 export interface CreateFeedbackFormProps {
     successCallback?: (status?: boolean) => void;
 }
@@ -44,6 +40,8 @@ const CreateFeedbackForm: React.FC<CreateFeedbackFormProps> = ({
         state.creatingFeedback,
         state.createFeedback,
     ]);
+
+    const setError = useStore(state => state.setError);
 
     const [imageUrls, setImageUrls] = useState<
         (ImageType & { name: string })[]
@@ -56,6 +54,47 @@ const CreateFeedbackForm: React.FC<CreateFeedbackFormProps> = ({
         handleSubmit,
         formState: { errors },
     } = useForm({ mode: "onChange" });
+
+    const { id: organizationId } = useStore(state => state.organization) || {
+        id: "",
+    };
+
+    const postFeedback = async (params: {
+        token: string;
+        title: string;
+        content: string;
+        imageUrls?: string[];
+        feedBackTypeId: number;
+    }) => {
+        try {
+            if (!organizationId) {
+                return;
+            }
+            const feedback = {
+                title: params.title,
+                content: params.content,
+                imageUrls: params.imageUrls,
+                feedbackTypeId: params.feedBackTypeId,
+                token: params.token,
+            };
+            const status = await createFeedback(feedback, organizationId);
+            successCallback?.(status);
+        } catch (err) {
+            if (err) {
+                const { message, code } = err as AppError;
+                if (code === RATE_LIMIT_CODE.code) {
+                    setError({
+                        code,
+                        message,
+                    });
+                } else {
+                    setError({
+                        message: "Có lỗi xảy ra, vui lòng thử lại sau!",
+                    });
+                }
+            }
+        }
+    };
 
     const onSubmit = async data => {
         const { title, content } = data;
@@ -104,49 +143,6 @@ const CreateFeedbackForm: React.FC<CreateFeedbackFormProps> = ({
             return `${name} không hợp lệ`;
         }
         return "";
-    };
-
-    const { id: organizationId } = useStore(state => state.organization) || {
-        id: "",
-    };
-
-    const setError = useStore(state => state.setError);
-
-    const postFeedback = async (params: {
-        token: string;
-        title: string;
-        content: string;
-        imageUrls?: string[];
-        feedBackTypeId: number;
-    }) => {
-        try {
-            if (!organizationId) {
-                return;
-            }
-            const feedback = {
-                title: params.title,
-                content: params.content,
-                imageUrls: params.imageUrls,
-                feedbackTypeId: params.feedBackTypeId,
-                token: params.token,
-            };
-            const status = await createFeedback(feedback, organizationId);
-            successCallback?.(status);
-        } catch (err) {
-            if (err) {
-                const { message, code } = err as AppError;
-                if (code === RATE_LIMIT_CODE.code) {
-                    setError({
-                        code,
-                        message,
-                    });
-                } else {
-                    setError({
-                        message: "Có lỗi xảy ra, vui lòng thử lại sau!",
-                    });
-                }
-            }
-        }
     };
 
     return (

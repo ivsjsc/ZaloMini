@@ -7,7 +7,7 @@ import Contacts from "./Contacts";
 import Procedures from "./Procedures";
 
 const HomePage: React.FunctionComponent = () => (
-    <PageLayout id="home-page">
+    <PageLayout id="home-page" customHeader={<div />}>
         <WelcomeBanner />
         <Utinities utinities={APP_UTINITIES} />
         <ListOA />

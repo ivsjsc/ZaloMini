@@ -5,7 +5,7 @@
         "textColor": "white",
         "statusBarColor": "#1976D2",
         "leftButton": "none",
-        "actionBarHidden": false,
+        "actionBarHidden": true,
         "hideIOSSafeAreaBottom": true,
         "statusBar": "transparent"
     },
