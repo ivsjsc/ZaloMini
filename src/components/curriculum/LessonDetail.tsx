@@ -5,8 +5,25 @@ import { Box, Text, List } from "zmp-ui";
 import { useParams } from "react-router-dom";
 
 const LessonDetail: React.FC = () => {
-    const { categoryKey, levelId, unitId, lessonId } = useParams<{ categoryKey: string; levelId: string; unitId: string; lessonId: string }>();
-    const { currentCategory, currentLevel, currentUnit, currentLesson, loading, error, loadCategory, setCurrentLevel, setCurrentUnit, setCurrentLesson } = useStore(state => ({
+    const { categoryKey, levelId, unitId, lessonId } =
+        useParams<{
+            categoryKey: string;
+            levelId: string;
+            unitId: string;
+            lessonId: string;
+        }>();
+    const {
+        currentCategory,
+        currentLevel,
+        currentUnit,
+        currentLesson,
+        loading,
+        error,
+        loadCategory,
+        setCurrentLevel,
+        setCurrentUnit,
+        setCurrentLesson,
+    } = useStore(state => ({
         currentCategory: state.currentCategory,
         currentLevel: state.currentLevel,
         currentUnit: state.currentUnit,
@@ -24,24 +41,38 @@ const LessonDetail: React.FC = () => {
             loadCategory(categoryKey);
         }
         if (currentCategory && levelId) {
-            const level = currentCategory.levels.find(l => l.level.toString() === levelId);
+            const level = currentCategory.levels.find(
+                l => l.level.toString() === levelId,
+            );
             if (level) {
                 setCurrentLevel(level);
             }
         }
         if (currentLevel && unitId) {
-            const unit = currentLevel.units.find(u => u.id.toString() === unitId);
+            const unit = currentLevel.units.find(
+                u => u.id.toString() === unitId,
+            );
             if (unit) {
                 setCurrentUnit(unit);
             }
         }
         if (currentUnit && lessonId) {
-            const lesson = currentUnit.lessons.find(l => l.id.toString() === lessonId);
+            const lesson = currentUnit.lessons.find(
+                l => l.id.toString() === lessonId,
+            );
             if (lesson) {
                 setCurrentLesson(lesson);
             }
         }
-    }, [categoryKey, levelId, unitId, lessonId, currentCategory, currentLevel, currentUnit, loadCategory, setCurrentLevel, setCurrentUnit, setCurrentLesson]);
+    }, [
+        categoryKey,
+        levelId,
+        unitId,
+        lessonId,
+        currentCategory,
+        currentLevel,
+        currentUnit,
+    ]);
 
     if (loading) {
         return (
@@ -96,8 +127,13 @@ const LessonDetail: React.FC = () => {
                         {currentLesson.vocabulary.map((vocab, index) => (
                             <List.Item key={index}>
                                 <Box>
-                                    <Text.Title size="small">{vocab.term}</Text.Title>
-                                    <Text>{vocab.pronunciation} - {vocab.vietnamese}</Text>
+                                    <Text.Title size="small">
+                                        {vocab.term}
+                                    </Text.Title>
+                                    <Text>
+                                        {vocab.pronunciation} -{" "}
+                                        {vocab.vietnamese}
+                                    </Text>
                                 </Box>
                             </List.Item>
                         ))}
@@ -110,7 +146,9 @@ const LessonDetail: React.FC = () => {
                         {currentLesson.grammar.map((gram, index) => (
                             <List.Item key={index}>
                                 <Box>
-                                    <Text.Title size="small">{gram.title.en}</Text.Title>
+                                    <Text.Title size="small">
+                                        {gram.title.en}
+                                    </Text.Title>
                                     <Text>{gram.title.vi}</Text>
                                     <List>
                                         {gram.explanation.en.map((exp, i) => (
@@ -131,13 +169,19 @@ const LessonDetail: React.FC = () => {
                         {currentLesson.activities.map((activity, index) => (
                             <List.Item key={index}>
                                 <Box>
-                                    <Text.Title size="small">{activity.type}</Text.Title>
+                                    <Text.Title size="small">
+                                        {activity.type}
+                                    </Text.Title>
                                     <List>
-                                        {activity.description.en.map((desc, i) => (
-                                            <List.Item key={i}>
-                                                <Text size="small">{desc}</Text>
-                                            </List.Item>
-                                        ))}
+                                        {activity.description.en.map(
+                                            (desc, i) => (
+                                                <List.Item key={i}>
+                                                    <Text size="small">
+                                                        {desc}
+                                                    </Text>
+                                                </List.Item>
+                                            ),
+                                        )}
                                     </List>
                                 </Box>
                             </List.Item>

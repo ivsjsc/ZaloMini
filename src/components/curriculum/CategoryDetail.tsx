@@ -20,7 +20,7 @@ const CategoryDetail: React.FC = () => {
         if (categoryKey && !currentCategory) {
             loadCategory(categoryKey);
         }
-    }, [categoryKey, currentCategory, loadCategory]);
+    }, [categoryKey, currentCategory]);
 
     // clicking level only sets current level (not required here)
 

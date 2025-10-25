@@ -6,8 +6,18 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UnitDetail: React.FC = () => {
     const navigate = useNavigate();
-    const { categoryKey, levelId, unitId } = useParams<{ categoryKey: string; levelId: string; unitId: string }>();
-    const { currentCategory, currentLevel, currentUnit, loading, error, loadCategory, setCurrentLevel, setCurrentUnit } = useStore(state => ({
+    const { categoryKey, levelId, unitId } =
+        useParams<{ categoryKey: string; levelId: string; unitId: string }>();
+    const {
+        currentCategory,
+        currentLevel,
+        currentUnit,
+        loading,
+        error,
+        loadCategory,
+        setCurrentLevel,
+        setCurrentUnit,
+    } = useStore(state => ({
         currentCategory: state.currentCategory,
         currentLevel: state.currentLevel,
         currentUnit: state.currentUnit,
@@ -23,21 +33,27 @@ const UnitDetail: React.FC = () => {
             loadCategory(categoryKey);
         }
         if (currentCategory && levelId) {
-            const level = currentCategory.levels.find(l => l.level.toString() === levelId);
+            const level = currentCategory.levels.find(
+                l => l.level.toString() === levelId,
+            );
             if (level) {
                 setCurrentLevel(level);
             }
         }
         if (currentLevel && unitId) {
-            const unit = currentLevel.units.find(u => u.id.toString() === unitId);
+            const unit = currentLevel.units.find(
+                u => u.id.toString() === unitId,
+            );
             if (unit) {
                 setCurrentUnit(unit);
             }
         }
-    }, [categoryKey, levelId, unitId, currentCategory, currentLevel, loadCategory, setCurrentLevel, setCurrentUnit]);
+    }, [categoryKey, levelId, unitId, currentCategory, currentLevel]);
 
     const handleLessonClick = (lesson: any) => {
-        navigate(`/curriculum/${categoryKey}/level/${levelId}/unit/${unitId}/lesson/${lesson.id}`);
+        navigate(
+            `/curriculum/${categoryKey}/level/${levelId}/unit/${unitId}/lesson/${lesson.id}`,
+        );
     };
 
     if (loading) {
@@ -77,10 +93,15 @@ const UnitDetail: React.FC = () => {
                 <Text>{currentUnit.title.vi}</Text>
                 <Box mt={4}>
                     <List>
-                        {currentUnit.lessons.map((lesson) => (
-                            <List.Item key={lesson.id} onClick={() => handleLessonClick(lesson)}>
+                        {currentUnit.lessons.map(lesson => (
+                            <List.Item
+                                key={lesson.id}
+                                onClick={() => handleLessonClick(lesson)}
+                            >
                                 <Box p={3}>
-                                    <Text.Title size="small">{lesson.title.en}</Text.Title>
+                                    <Text.Title size="small">
+                                        {lesson.title.en}
+                                    </Text.Title>
                                     <Text>{lesson.title.vi}</Text>
                                 </Box>
                             </List.Item>

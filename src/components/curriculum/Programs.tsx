@@ -17,7 +17,7 @@ const Programs: React.FC = () => {
         if (categories.length === 0) {
             loadCategories();
         }
-    }, [categories.length, loadCategories]);
+    }, [categories.length]);
 
     const handleCategoryClick = (categoryKey: string) => {
         navigate(`/curriculum/${categoryKey}`);
@@ -50,10 +50,17 @@ const Programs: React.FC = () => {
                 <Text>Choose a program to start learning</Text>
                 <Box mt={4}>
                     <List>
-                        {categories.map((category) => (
-                            <List.Item key={category.key} onClick={() => handleCategoryClick(category.key)}>
+                        {categories.map(category => (
+                            <List.Item
+                                key={category.key}
+                                onClick={() =>
+                                    handleCategoryClick(category.key)
+                                }
+                            >
                                 <Box p={3}>
-                                    <Text.Title size="small">{category.en}</Text.Title>
+                                    <Text.Title size="small">
+                                        {category.en}
+                                    </Text.Title>
                                     <Text>{category.vi}</Text>
                                 </Box>
                             </List.Item>
