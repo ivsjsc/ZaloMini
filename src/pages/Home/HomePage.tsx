@@ -1,19 +1,60 @@
 import React from "react";
-import { Utinities, ListOA } from "@components";
 import PageLayout from "@components/layout/PageLayout";
-import { APP_UTINITIES } from "@constants/utinities";
 import WelcomeBanner from "@components/WelcomeBanner";
-import Contacts from "./Contacts";
+import DiscoverCard from "@components/home/DiscoverCard";
+import QuickAiChat from "@components/home/QuickAiChat";
+import BottomNav from "@components/home/BottomNav";
+import { Box } from "zmp-ui";
 import Procedures from "./Procedures";
+import Contacts from "./Contacts";
 
-const HomePage: React.FunctionComponent = () => (
-    <PageLayout id="home-page" customHeader={<div />}>
-        <WelcomeBanner />
-        <Utinities utinities={APP_UTINITIES} />
-        <ListOA />
-        <Contacts />
-        <Procedures />
-    </PageLayout>
-);
+const HomePage: React.FunctionComponent = () => {
+    const discover = [
+        {
+            title: "Browse Programs",
+            subtitle: "Explore K-12 curriculum",
+            icon: "zi-book",
+        },
+        {
+            title: "AI Chat Assistant",
+            subtitle: "Practice conversation",
+            icon: "zi-chat",
+        },
+        {
+            title: "Your Profile",
+            subtitle: "Track your progress",
+            icon: "zi-user",
+        },
+        {
+            title: "Testing & Placement",
+            subtitle: "Take tests to determine your placement",
+            icon: "zi-calendar",
+        },
+    ];
+
+    return (
+        <PageLayout id="home-page" customHeader={<div />}>
+            <WelcomeBanner />
+
+            <Box p={4} className="space-y-3">
+                {discover.map((d, idx) => (
+                    <DiscoverCard
+                        key={idx}
+                        icon={d.icon as any}
+                        title={d.title}
+                        subtitle={d.subtitle}
+                    />
+                ))}
+
+                <QuickAiChat />
+            </Box>
+
+            <Contacts />
+            <Procedures />
+
+            <BottomNav />
+        </PageLayout>
+    );
+};
 
 export default HomePage;
